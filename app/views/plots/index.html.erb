@@ -4,9 +4,9 @@
   <div id="plot-<%="#{p.id}"%>">
     <p>Plot #<%= p.number %></p>
     <p>plants in this plot:</p>
-    <% p.plants.each do |pl| %>
-      <p><%= pl.name %></p>
-      <%= link_to "Remove #{pl.name}", plot_plant_path(p, pl), method: :delete %>
+    <% p.plot_plants.each do |pp| %>
+      <p><%= pp.plant.name %></p>
+      <%= link_to "Remove #{pp.plant.name}", plot_plant_path(pp), method: :delete %>
     <% end %>
   </div>
 <% end %>

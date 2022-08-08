@@ -53,7 +53,7 @@ RSpec.describe "plots index" do
     expect(current_path).to eq(plots_path)
 
     within "#plot-#{@plot_1.id}" do
-      expect(page).to_no have_content(@plant_1.name)
+      expect(page).to_not have_content(@plant_1.name)
     end
   end
 end
