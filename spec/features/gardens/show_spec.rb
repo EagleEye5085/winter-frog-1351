@@ -1,12 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Garden do
-  describe 'relationships' do
-    it { should have_many(:plots) }
-  end
-
-  it 'finds a uniq list of plants with harvest time less than 100' do
-
+RSpec.describe "gardens show" do
+  before :each do
     @turing_garden = Garden.create!(name: 'Turing Community Garden', organic: true)
 
 
@@ -26,6 +21,13 @@ RSpec.describe Garden do
     @plot_plants_5 = PlotPlant.create!(plot_id: @plot_1.id, plant_id: @plant_3.id)
     @plot_plants_6 = PlotPlant.create!(plot_id: @plot_2.id, plant_id: @plant_4.id)
 
-    expect(@turing_garden.uniqplants).to eq(["corn", "potato"])
+    visit "/gardens/#{@turing_garden.id}"
+  end
+
+  it 'lists plants in its plots' do
+    expect(page).to have_content(@plant_1.name)
+    expect(page).to_not have_content(@plant_2.name)
+    expect(page).to_not have_content(@plant_3.name)
+    expect(page).to have_content(@plant_4.name)
   end
 end
