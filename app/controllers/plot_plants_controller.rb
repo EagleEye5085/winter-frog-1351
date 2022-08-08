@@ -1,7 +1,7 @@
 class PlotPlantsController < ApplicationController
 
   def destroy
-    PlotPlant.where(plot_id: params[:plot_id], plant_id: params[:id]).destroy
+    plot_plant = PlotPlant.where(plot_id: params[:plot_id], plant_id: params[:id]).destroy
     redirect_to plots_path
   end
 
